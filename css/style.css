@@ -802,6 +802,32 @@ strong {
   transform: translateY(-2px);
 }
 
+.share-button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  margin-left: 1rem;
+}
+
+.share-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+.share-button.copied {
+  background: #4caf50;
+  border-color: #4caf50;
+}
+
 .footer-attribution {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 2rem;
@@ -812,6 +838,505 @@ strong {
   font-size: 0.8rem;
   color: #607d8b;
   margin-top: 1rem;
+}
+
+.footer-highlight {
+  color: #fff;
+}
+
+.footer-credit {
+  font-size: 0.8rem;
+  color: #607d8b;
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   LIVE DEATH COUNTER (Hero)
+   ============================================ */
+.live-counter {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(232, 97, 77, 0.1);
+  border: 1px solid rgba(232, 97, 77, 0.25);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #b0bec5;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.4rem;
+  line-height: 1.6;
+}
+
+.live-counter-number {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--color-salmon);
+}
+
+/* ============================================
+   RELATABLE COMPARISONS (NEW B)
+   ============================================ */
+.comparison-display {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.comparison-number {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--color-salmon);
+  line-height: 1.1;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Per-capita icon illustration */
+.comparison-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.comparison-icons.visible {
+  opacity: 1;
+}
+.icon-person {
+  font-size: 2rem;
+  line-height: 1;
+}
+.icon-equals {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+.icon-salmon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  max-width: 220px;
+}
+.icon-salmon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-salmon);
+}
+
+.comparison-number.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.comparison-text {
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+  margin-top: 0.75rem;
+  max-width: 400px;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.2s;
+}
+
+.comparison-text.visible {
+  opacity: 1;
+}
+
+/* ============================================
+   CIRCLE COMPARISON — Wild vs Farmed (NEW D)
+   ============================================ */
+.circle-comparison {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  min-height: 300px;
+  flex-wrap: wrap;
+}
+
+.circle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.circle-big {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: var(--color-salmon);
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.circle-big.visible {
+  opacity: 0.8;
+  transform: scale(1);
+}
+
+.circle-big-label {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.circle-big-sub {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.circle-small {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.5s;
+}
+
+.circle-small.visible {
+  opacity: 1;
+}
+
+.circle-label {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+.circle-ratio {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--color-salmon);
+  margin-top: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.circle-ratio.visible {
+  opacity: 1;
+}
+
+/* ============================================
+   TREND CHART PLACEHOLDER (NEW E)
+   ============================================ */
+.trend-chart {
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.trend-svg {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+/* Axes */
+.trend-axis {
+  stroke: var(--color-text-muted);
+  stroke-width: 1;
+}
+.trend-axis-right {
+  opacity: 0.4;
+}
+.trend-grid-line {
+  stroke: var(--color-safe);
+  stroke-width: 0.5;
+  stroke-dasharray: 4,3;
+}
+.trend-axis-label {
+  font-family: var(--font-body);
+  font-size: 9px;
+  fill: var(--color-text-muted);
+}
+.trend-axis-wild {
+  fill: #4caf50;
+}
+.trend-axis-title {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 600;
+}
+.trend-axis-title-loss {
+  fill: var(--color-salmon);
+}
+.trend-axis-title-wild {
+  fill: #4caf50;
+}
+
+/* Lines */
+.trend-line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dashoffset 1.8s ease-out;
+}
+.trend-line-loss {
+  stroke: var(--color-salmon);
+}
+.trend-line-wild {
+  stroke: #4caf50;
+}
+.trend-line.drawn {
+  stroke-dashoffset: 0 !important;
+}
+
+/* Data dots */
+.trend-dot {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.trend-dot.visible {
+  opacity: 1;
+}
+.trend-dot-loss {
+  fill: var(--color-salmon);
+}
+.trend-dot-wild {
+  fill: #4caf50;
+}
+.trend-dot-spike {
+  fill: var(--color-danger);
+}
+.trend-dot-spike.pulse {
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { r: 5; opacity: 1; }
+  50% { r: 8; opacity: 0.7; }
+}
+
+/* 2023 annotation */
+.trend-annotation {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.trend-annotation.visible {
+  opacity: 1;
+}
+
+/* Chart label (above each mini-chart) */
+.trend-chart-label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+/* Dark mode overrides for trend chart */
+[data-theme="dark"] .trend-grid-line {
+  stroke: rgba(255,255,255,0.1);
+}
+[data-theme="dark"] .trend-axis {
+  stroke: rgba(255,255,255,0.3);
+}
+
+/* ============================================
+   TIMELINE — Norway's Double Standard (NEW F)
+   ============================================ */
+.timeline-section {
+  background: var(--color-bg);
+  padding: 6rem 2rem;
+}
+
+.timeline-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+}
+
+.timeline-intro h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.timeline-intro p {
+  font-size: 1.15rem;
+  color: var(--color-text-light);
+}
+
+.timeline {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 3rem;
+}
+
+/* Vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-safe);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Dot on the line */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.55rem;
+  top: 0.3rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 2px solid var(--color-bg);
+}
+
+.timeline-item-crisis::before {
+  background: var(--color-salmon);
+  width: 16px;
+  height: 16px;
+  left: -2.65rem;
+  top: 0.2rem;
+}
+
+.timeline-year {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-item-crisis .timeline-year {
+  color: var(--color-salmon);
+}
+
+.timeline-content h4 {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-content p {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+}
+
+/* Law quote in timeline */
+.law-quote {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--color-salmon);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* Legal callout in scroll text */
+.legal-callout {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(211, 47, 47, 0.06);
+  border-left: 3px solid var(--color-danger);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--color-text-light);
+  border-radius: 0 4px 4px 0;
+}
+[data-theme="dark"] .legal-callout {
+  background: rgba(211, 47, 47, 0.1);
+}
+
+/* ============================================
+   PUBLIC OPINION (NEW H)
+   ============================================ */
+.opinion-section {
+  background: var(--color-bg);
+  padding: 6rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+[data-theme="dark"] .opinion-section {
+  border-bottom-color: #1e2a38;
+}
+
+.opinion-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.opinion-stat {
+  margin-bottom: 2rem;
+}
+
+.opinion-number {
+  font-family: var(--font-heading);
+  font-size: 6rem;
+  font-weight: 900;
+  color: var(--color-salmon);
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.opinion-number.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.opinion-label {
+  font-size: 1.3rem;
+  color: var(--color-text);
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+
+.opinion-detail {
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+}
+
+.opinion-source {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+  font-style: italic;
 }
 
 /* ============================================
@@ -898,5 +1423,106 @@ strong {
   .bar-label {
     width: 80px;
     font-size: 0.8rem;
+  }
+
+  .comparison-number {
+    font-size: 3rem;
+  }
+
+  .circle-big {
+    width: 160px;
+    height: 160px;
+  }
+
+  .circle-big-label {
+    font-size: 1.3rem;
+  }
+
+  .circle-ratio {
+    font-size: 1.8rem;
+  }
+
+  .timeline {
+    padding-left: 2.5rem;
+  }
+
+  .timeline-section,
+  .opinion-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .opinion-number {
+    font-size: 4rem;
+  }
+
+  .opinion-label {
+    font-size: 1.1rem;
+  }
+
+  .live-counter {
+    font-size: 0.8rem;
+  }
+
+  .live-counter-number {
+    font-size: 1.3rem;
+  }
+
+  /* Trend charts on mobile */
+  .trend-chart-label {
+    font-size: 0.75rem;
+  }
+  .trend-axis-label {
+    font-size: 7px !important;
+  }
+
+  /* Comparison icons on mobile */
+  .icon-salmon-grid {
+    max-width: 160px;
+  }
+  .icon-salmon-dot {
+    width: 6px;
+    height: 6px;
+  }
+  .icon-person {
+    font-size: 1.5rem;
+  }
+
+  /* Legal callout on mobile */
+  .legal-callout {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.6rem;
+  }
+  .law-quote {
+    font-size: 0.8rem;
+  }
+
+  /* Footer on mobile */
+  .footer-cta h2 {
+    font-size: 1.5rem;
+  }
+  .cta-button,
+  .share-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  .share-button {
+    margin-left: 0;
+    margin-top: 0.75rem;
+  }
+
+  /* Dark mode border fix on mobile */
+  [data-theme="dark"] .scroll-graphic {
+    border-bottom-color: #1e2a38;
+  }
+
+  /* Stage flow on mobile */
+  .stage-flow {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Thermometer on mobile */
+  .thermo-svg {
+    max-height: 150px;
   }
 }

@@ -6,6 +6,19 @@
   <title>Beneath the Surface — The Animal Welfare Crisis in Norwegian Fish Farming</title>
   <meta name="description" content="200 million farmed salmon die in Norway each year before reaching slaughter. An interactive visualization of Norway's largest animal welfare crisis.">
 
+  <!-- Open Graph (social sharing) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Beneath the Surface — Norway's Fish Farming Crisis">
+  <meta property="og:description" content="200 million farmed salmon die each year in Norway. Scroll through the data to understand the scale of the crisis.">
+  <meta property="og:site_name" content="Beneath the Surface">
+  <!-- og:image — add when a share image is available -->
+  <!-- <meta property="og:image" content="https://example.com/share-image.jpg"> -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Beneath the Surface — Norway's Fish Farming Crisis">
+  <meta name="twitter:description" content="200 million farmed salmon die each year in Norway. Scroll through the data to understand the scale of the crisis.">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,6 +61,11 @@
         <span>Scroll to explore</span>
         <div class="scroll-arrow">&#8595;</div>
       </div>
+      <div class="live-counter" id="liveCounter">
+        <span>Since you opened this page, approximately</span>
+        <span class="live-counter-number" id="liveDeathCount">0</span>
+        <span>salmon have died in Norwegian fish farms</span>
+      </div>
     </div>
     <!-- SVG salmon silhouettes will be added here -->
     <div class="hero-bg-fish" id="heroFish"></div>
@@ -81,6 +99,90 @@
       <div class="step" data-step="4">
         <p><strong>92.5%</strong> of all production animals in Norway are farmed salmon. Including trout and cod raises the total share of farmed fish to over 98%.</p>
       </div>
+      <div class="step" data-step="5">
+        <p>Put another way: with 5.5 million people, every Norwegian is effectively responsible for <strong>164 farmed salmon</strong> right now — and about <strong>36 salmon deaths</strong> per person per year.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- NEW B: MAKING IT REAL (Relatable Comparisons) -->
+  <!-- ============================================ -->
+  <section class="scroll-section" id="section-comparisons">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="comparisons-graphic">
+        <div class="comparison-display" id="comparisonDisplay">
+          <div class="comparison-number" id="comparisonNumber"></div>
+          <div class="comparison-text" id="comparisonText"></div>
+          <div class="comparison-icons" id="comparisonIcons"></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>Making It Real</h2>
+        <p>Numbers in the hundreds of millions are hard to grasp. Let's put them in perspective.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>900 million salmon is <strong>165 times Norway's entire human population</strong>.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>The 200 million salmon that die each year roughly equals <strong>the entire population of Brazil</strong>.</p>
+      </div>
+      <div class="step" data-step="4">
+        <p>If you counted one salmon per second, non-stop, it would take <strong>28 years</strong> to count all the farmed salmon in Norway.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- NEW C: NORWAY'S GLOBAL DOMINANCE (placeholder) -->
+  <!-- ============================================ -->
+  <section class="scroll-section" id="section-global">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="global-graphic">
+        <h3 class="graphic-title">Share of global farmed salmon production</h3>
+        <div class="bar-chart" id="globalChart">
+          <!-- Bars rendered by JS -->
+        </div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>The World's Largest Producer</h2>
+        <p>Norway dominates global salmon farming, controlling <strong>more than half</strong> of the world's total production. That scale demands extraordinary responsibility.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>Global farmed salmon production reached <strong>2.9 million tonnes</strong> in 2023. Norway alone accounted for over 53%. Chile follows at roughly 25%.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>This dominance means Norway has a <strong>unique responsibility</strong> — and unique power — to set welfare standards for the entire global industry.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- NEW D: WILD VS FARMED (placeholder data)      -->
+  <!-- ============================================ -->
+  <section class="scroll-section" id="section-wild">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="wild-graphic">
+        <div class="circle-comparison" id="circleComparison">
+          <!-- Two circles rendered by JS -->
+        </div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>The Wild vs Farmed Divide</h2>
+        <p>Norway is famous for its wild salmon rivers. But the balance between wild and farmed has shifted beyond recognition.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>Only about <strong>400,000</strong> wild Atlantic salmon return to Norwegian rivers each year — down from 530,000 in 2010. Meanwhile, <strong>884 million</strong> farmed salmon swim in sea pens.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>Farmed salmon outnumber wild salmon by approximately <strong>2,200 to 1</strong>.</p>
+      </div>
     </div>
   </section>
 
@@ -112,6 +214,33 @@
       </div>
       <div class="step" data-step="5">
         <p>Behind these figures lies tremendous pain, disease, and poor living conditions. Common causes of death include winter ulcers, heart failure, and gill disorders.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- NEW E: A GROWING CRISIS (Historical Trends)   -->
+  <!-- ============================================ -->
+  <section class="scroll-section" id="section-trends">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="trends-graphic">
+        <h3 class="graphic-title">A growing crisis, 2010–2024</h3>
+        <div class="trend-chart" id="trendChart">
+          <!-- SVG line chart rendered by JS -->
+          <div class="trend-placeholder">Historical data chart — awaiting time-series data from the Norwegian Directorate of Fisheries</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>A Growing Crisis</h2>
+        <p>This is not a new problem — and it's not getting better. Despite growing awareness and industry pledges, the numbers remain stubbornly high.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>The Office of the Auditor General criticised the authorities in <strong>2019</strong> for inadequate follow-up. A second investigation in <strong>2023</strong> found the same persistent challenges.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>Year after year, the industry grows — but welfare improvements have not kept pace with production expansion.</p>
       </div>
     </div>
   </section>
@@ -246,7 +375,70 @@
       </div>
       <div class="step" data-step="3">
         <p>Physical injuries such as wounds, fin erosion, and eye damage are common. The Norwegian Food Safety Authority reports <strong>high mortality rates</strong> during and after thermal delousing.</p>
+        <p class="legal-callout">Norway's own Animal Welfare Act (2009) states that animals — including fish — "shall be protected against unnecessary danger of suffering." Thermal delousing appears difficult to reconcile with this law.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- NEW F: NORWAY'S DOUBLE STANDARD (Timeline)    -->
+  <!-- ============================================ -->
+  <section class="timeline-section" id="section-timeline">
+    <div class="timeline-intro">
+      <h2>Norway's Double Standard</h2>
+      <p>Norway has a proud history of protecting animal welfare — on land. The contrast with fish farming is stark.</p>
+    </div>
+    <div class="timeline" id="timeline">
+      <div class="timeline-item" data-year="1842">
+        <div class="timeline-year">1842</div>
+        <div class="timeline-content">
+          <h4>First animal abuse prohibitions</h4>
+          <p>Norway becomes one of the first countries to outlaw animal cruelty.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-year="2009">
+        <div class="timeline-year">2009</div>
+        <div class="timeline-content">
+          <h4>Animal Welfare Act</h4>
+          <p>Norwegian law recognises animals' — including fish' — <strong>intrinsic value</strong>.</p>
+          <blockquote class="law-quote">"Animals shall be treated well and be protected against unnecessary danger of suffering." — §3, Animal Welfare Act</blockquote>
+        </div>
+      </div>
+      <div class="timeline-item" data-year="2015">
+        <div class="timeline-year">2015</div>
+        <div class="timeline-content">
+          <h4>Ban on severely painful research</h4>
+          <p>New regulations prohibit research involving severe pain on animals.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-year="2019">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-content">
+          <h4>Fur farming banned</h4>
+          <p>Norway phases out fur farming entirely, citing animal welfare concerns.</p>
+        </div>
+      </div>
+      <div class="timeline-item timeline-item-crisis" data-year="2023">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-content">
+          <h4>200 million salmon die in production</h4>
+          <p>No major reform. Despite the Animal Welfare Act applying equally to fish, the Auditor General finds <strong>persistent challenges</strong> with disease and poor fish welfare remain unaddressed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- NEW H: PUBLIC OPINION IS SHIFTING             -->
+  <!-- ============================================ -->
+  <section class="opinion-section" id="section-opinion">
+    <div class="opinion-content">
+      <div class="opinion-stat">
+        <div class="opinion-number" id="opinionNumber">37%</div>
+        <div class="opinion-label">of Norwegians have grown more sceptical of farmed salmon</div>
+      </div>
+      <p class="opinion-detail">In a 2024 survey of over 1,000 Norwegians, most cited <strong>ethical and environmental reasons</strong> for their growing scepticism.</p>
+      <p class="opinion-source">Source: NRK / Norstat survey, March 2024</p>
     </div>
   </section>
 
@@ -301,10 +493,12 @@
         <h2>This crisis demands action</h2>
         <p>Norway controls over half of the world's farmed salmon production. We have a special responsibility — and the power to lead change.</p>
         <a href="#" class="cta-button" target="_blank" rel="noopener">Read the full Langsikt report</a>
+        <button class="share-button" id="shareButton" aria-label="Share this page">Share this page</button>
       </div>
       <div class="footer-attribution">
-        <p>Based on <em>"Beneath the Surface: The Animal Welfare Crisis in Norwegian Fish Farming"</em> by Albert Didriksen &amp; Aksel Sterri. Published January 2025 by <strong>Langsikt</strong>, a politically independent think tank.</p>
+        <p>Based on <em>"Beneath the Surface: The Animal Welfare Crisis in Norwegian Fish Farming"</em> by Albert Didriksen &amp; Aksel Sterri. Published January 2025 by <strong class="footer-highlight">Langsikt</strong>, a politically independent think tank.</p>
         <p class="footer-note">All data sourced from the Norwegian Veterinary Institute, the Norwegian Directorate of Fisheries, and the Office of the Auditor General of Norway.</p>
+        <p class="footer-credit">Website created by Albert Didriksen, with the support of Anders Eidesvik.</p>
       </div>
     </div>
   </footer>
@@ -344,5 +538,32 @@
   <script src="js/icon-grid.js"></script>
   <script src="js/charts.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- Share button -->
+  <script>
+    (function() {
+      var btn = document.getElementById('shareButton');
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        var shareData = {
+          title: 'Beneath the Surface',
+          text: '200 million salmon died in Norwegian fish farms in 2023. This interactive report visualizes the scale of the crisis.',
+          url: window.location.href
+        };
+        if (navigator.share) {
+          navigator.share(shareData).catch(function() {});
+        } else {
+          navigator.clipboard.writeText(window.location.href).then(function() {
+            btn.textContent = 'Link copied!';
+            btn.classList.add('copied');
+            setTimeout(function() {
+              btn.textContent = 'Share this page';
+              btn.classList.remove('copied');
+            }, 2000);
+          });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

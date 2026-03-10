@@ -15,8 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     progressBar.style.width = scrollPercent + '%';
   });
 
+  // --- Start the live death counter in the hero ---
+  startLiveDeathCounter();
+
   // --- Initialize all visualizations ---
-  // These functions are defined in their own JS files
   initIconGrid();       // icon-grid.js
   initCharts();         // charts.js
   initCounters();       // counter.js
@@ -26,13 +28,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Animate solution cards on scroll ---
   setupSolutionCards();
+
+  // --- Animate timeline items on scroll ---
+  setupTimeline();
+
+  // --- Animate opinion number on scroll ---
+  setupOpinionSection();
 });
 
 
 /**
+ * Live death counter in the hero section.
+ * 200 million deaths/year ÷ 365 ÷ 24 ÷ 60 ÷ 60 ≈ 6.34 per second
+ */
+function startLiveDeathCounter() {
+  const el = document.getElementById('liveDeathCount');
+  if (!el) return;
+
+  const deathsPerSecond = 200000000 / 365 / 24 / 60 / 60; // ~6.34
+  let elapsed = 0;
+
+  setInterval(() => {
+    elapsed++;
+    const count = Math.round(deathsPerSecond * elapsed);
+    el.textContent = count.toLocaleString();
+  }, 1000);
+}
+
+
+/**
  * Sets up scrollama instances for each scroll-section.
- * When a "step" scrolls into view, it becomes active (fully visible)
- * and triggers the corresponding visual update.
  */
 function setupScrollSections() {
   const sections = document.querySelectorAll('.scroll-section');
@@ -46,40 +71,42 @@ function setupScrollSections() {
     scroller
       .setup({
         step: steps,
-        offset: 0.5,    // trigger when step is halfway into viewport
+        offset: 0.5,
         progress: false,
       })
       .onStepEnter(response => {
-        // Mark this step as active (full opacity)
         steps.forEach(s => s.classList.remove('is-active'));
         response.element.classList.add('is-active');
 
-        // Get the step number (1-based from data-step attribute)
         const stepNum = parseInt(response.element.getAttribute('data-step'));
-
-        // Call the appropriate visual update for this section
         updateVisual(sectionId, stepNum, response.direction);
       });
-  });
-
-  // Handle window resize (scrollama needs to recalculate)
-  window.addEventListener('resize', () => {
-    // scrollama handles resize internally
   });
 }
 
 
 /**
- * Routes visual updates to the correct handler
- * based on which section and step the user has scrolled to.
+ * Routes visual updates to the correct handler.
  */
 function updateVisual(sectionId, stepNum, direction) {
   switch (sectionId) {
     case 'section-livestock':
       updateLivestock(stepNum);
       break;
+    case 'section-comparisons':
+      updateComparisons(stepNum);
+      break;
+    case 'section-global':
+      updateGlobal(stepNum);
+      break;
+    case 'section-wild':
+      updateWild(stepNum);
+      break;
     case 'section-deaths':
       updateIconGrid(stepNum);
+      break;
+    case 'section-trends':
+      updateTrends(stepNum);
       break;
     case 'section-mortality':
       updateMortality(stepNum);
@@ -101,7 +128,7 @@ function updateVisual(sectionId, stepNum, direction) {
 
 
 /**
- * Animate solution cards into view as user scrolls to them
+ * Animate solution cards into view as user scrolls to them.
  */
 function setupSolutionCards() {
   const cards = document.querySelectorAll('.solution-card');
@@ -109,7 +136,6 @@ function setupSolutionCards() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Add a staggered delay based on card index
         const index = Array.from(cards).indexOf(entry.target);
         setTimeout(() => {
           entry.target.classList.add('visible');
@@ -120,4 +146,46 @@ function setupSolutionCards() {
   }, { threshold: 0.2 });
 
   cards.forEach(card => observer.observe(card));
+}
+
+
+/**
+ * Animate timeline items into view with staggered delays.
+ */
+function setupTimeline() {
+  const items = document.querySelectorAll('.timeline-item');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const index = Array.from(items).indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 200);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  items.forEach(item => observer.observe(item));
+}
+
+
+/**
+ * Animate the opinion "37%" number when it scrolls into view.
+ */
+function setupOpinionSection() {
+  const opinionNum = document.getElementById('opinionNumber');
+  if (!opinionNum) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        opinionNum.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(opinionNum);
 }
