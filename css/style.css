@@ -876,6 +876,13 @@ strong {
   color: var(--color-salmon);
 }
 
+.live-counter-note {
+  display: block;
+  font-size: 0.7rem;
+  opacity: 0.5;
+  margin-top: 0.4rem;
+}
+
 /* ============================================
    RELATABLE COMPARISONS (NEW B)
    ============================================ */
