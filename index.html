@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beneath the Surface — The Animal Welfare Crisis in Norwegian Fish Farming</title>
+  <meta name="description" content="200 million farmed salmon die in Norway each year before reaching slaughter. An interactive visualization of Norway's largest animal welfare crisis.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Our styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Dark mode toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <span id="themeIcon">&#9790;</span>
+  </button>
+
+  <!-- Scroll progress bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <script>
+    // Apply saved theme immediately to prevent flash
+    (function() {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <!-- ============================================ -->
+  <!-- SECTION 0: HERO                              -->
+  <!-- ============================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <p class="hero-overline">A Langsikt Report</p>
+      <h1 class="hero-title">Beneath the Surface</h1>
+      <p class="hero-subtitle">The animal welfare crisis in Norwegian fish farming</p>
+      <p class="hero-byline">By Albert Didriksen &amp; Aksel Sterri</p>
+      <div class="scroll-hint">
+        <span>Scroll to explore</span>
+        <div class="scroll-arrow">&#8595;</div>
+      </div>
+    </div>
+    <!-- SVG salmon silhouettes will be added here -->
+    <div class="hero-bg-fish" id="heroFish"></div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 1: NORWAY'S HIDDEN LIVESTOCK          -->
+  <!-- ============================================ -->
+  <section class="scroll-section" id="section-livestock">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="livestock-graphic">
+        <!-- Counter and donut chart rendered by JS -->
+        <div class="counter-display">
+          <span class="counter-number" id="salmonCounter">0</span>
+          <span class="counter-label">farmed salmon in Norwegian waters</span>
+        </div>
+        <div class="donut-container" id="donutChart"></div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>Norway's Hidden Livestock</h2>
+        <p>Nearly <strong>900 million</strong> farmed salmon are swimming in Norwegian waters right now. That's more than the entire human population of Europe.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>By comparison, Norway's entire land-based livestock totals roughly <strong>12.3 million</strong> poultry, <strong>1.5 million</strong> sheep, <strong>850,000</strong> cattle, and <strong>750,000</strong> pigs.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>Farmed salmon outnumber poultry — Norway's most populous land animal — by more than a factor of <strong>70</strong>.</p>
+      </div>
+      <div class="step" data-step="4">
+        <p><strong>92.5%</strong> of all production animals in Norway are farmed salmon. Including trout and cod raises the total share of farmed fish to over 98%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 2: THE DEATH TOLL (CENTREPIECE)       -->
+  <!-- ============================================ -->
+  <section class="scroll-section centrepiece" id="section-deaths">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="icon-grid-container">
+        <div class="grid-title" id="gridTitle">Deaths during production in 2023</div>
+        <div class="grid-legend" id="gridLegend"></div>
+        <div class="icon-grid" id="iconGrid"></div>
+        <div class="grid-scale">Each square = 100,000 animals</div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>The Death Toll</h2>
+        <p>In 2023, around <strong>200 million</strong> Norwegian farmed salmon died during production — before ever reaching slaughter.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>That number alone exceeds the total of <em>every other animal</em> used in Norwegian food production combined.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>In the same year, about <strong>5.4 million</strong> poultry died during production.</p>
+      </div>
+      <div class="step" data-step="4">
+        <p><strong>240,000</strong> pigs and <strong>100,000</strong> small ruminants also died.</p>
+      </div>
+      <div class="step" data-step="5">
+        <p>Behind these figures lies tremendous pain, disease, and poor living conditions. Common causes of death include winter ulcers, heart failure, and gill disorders.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 3: MORTALITY RATES                    -->
+  <!-- ============================================ -->
+  <section class="scroll-section" id="section-mortality">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="mortality-graphic">
+        <h3 class="graphic-title">Mortality rate before slaughter</h3>
+        <div class="bar-chart" id="mortalityChart">
+          <!-- Bars rendered by JS -->
+        </div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>The Highest Mortality Rate</h2>
+        <p>Farmed salmon also has the <strong>highest mortality rate</strong> among all animals raised for food in Norway.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>The Norwegian Veterinary Institute reports a <strong>16.7%</strong> mortality rate for farmed salmon in the seawater phase — meaning roughly one in six salmon die before slaughter.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>That's higher than pigs (12%), turkeys (9%), or cattle (8%). The mortality rate is often the consequence of prolonged pain, illness, stress, and unfavourable living conditions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 4: WHERE THEY DIE                     -->
+  <!-- ============================================ -->
+  <section class="scroll-section" id="section-stages">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="stages-graphic">
+        <h3 class="graphic-title">Where the losses happen</h3>
+        <div class="stage-flow" id="stageFlow">
+          <!-- Flow diagram rendered by JS -->
+        </div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>Where They Die</h2>
+        <p>Problems start at the <strong>hatchery</strong> (smolt production) stage, before salmon are placed in sea pens. These facilities often feature elevated water temperatures, intense lighting, and high tank densities.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>Approximately <strong>60 million</strong> salmon die in the smolt phase, and an additional <strong>80 million</strong> are destroyed.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>Things do not get better once the salmon reach the sea. An additional <strong>60 million</strong> fish die during the seawater phase, primarily from infectious diseases.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 5: DISEASE AND SUFFERING              -->
+  <!-- ============================================ -->
+  <section class="scroll-section" id="section-disease">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="disease-graphic">
+        <h3 class="graphic-title">Active seawater farming sites</h3>
+        <div class="dot-map" id="dotMap">
+          <!-- 815 dots rendered by JS -->
+        </div>
+        <div class="dot-legend">
+          <span class="dot-legend-item"><span class="dot dot-normal"></span> No winter ulcers reported</span>
+          <span class="dot-legend-item"><span class="dot dot-affected"></span> Winter ulcers found</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>Disease and Suffering</h2>
+        <p>Diseases in the seawater phase are grave and painful. <strong>Winter ulcers</strong>, caused by bacteria, are among the most common — producing large, open wounds on the fish.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>In 2023, winter ulcers were recorded at <strong>320 of 815</strong> active seawater production sites — despite these conditions not even being subject to mandatory reporting.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>Heart diseases like CMS (cardiomyopathy syndrome) damage the heart and lead to acute heart failure. Gill diseases further weaken the fish. High cage density increases stress and makes fish more vulnerable to illness.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 6: CLEANER FISH                       -->
+  <!-- ============================================ -->
+  <section class="scroll-section" id="section-cleaner">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="cleaner-graphic">
+        <h3 class="graphic-title">Cleaner fish deployed yearly</h3>
+        <div class="cleaner-grid" id="cleanerGrid">
+          <!-- Icons rendered by JS -->
+        </div>
+        <div class="cleaner-stats" id="cleanerStats"></div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>The Cleaner Fish Tragedy</h2>
+        <p>Salmon lice are among the main threats to salmon welfare at sea. To combat them, roughly <strong>30 million cleaner fish</strong> are deployed yearly in Norway. These smaller fish eat lice off salmon.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>But the approach causes considerable suffering. <strong>More than 40%</strong> of cleaner fish die. This can hardly be consistent with the Animal Welfare Act, which states that animals have intrinsic value.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>Major producer SalMar has already stated it will no longer rely on cleaner fish — a positive development. But without this method, the need for alternative lice treatments grows.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 7: THERMAL DELOUSING                  -->
+  <!-- ============================================ -->
+  <section class="scroll-section" id="section-thermal">
+    <div class="scroll-graphic">
+      <div class="graphic-content" id="thermal-graphic">
+        <div class="thermometer" id="thermometer">
+          <!-- Thermometer SVG rendered by JS -->
+        </div>
+      </div>
+    </div>
+    <div class="scroll-text">
+      <div class="step" data-step="1">
+        <h2>Thermal Delousing</h2>
+        <p>Thermal delousing involves immersing salmon in <strong>28–34°C water</strong> for up to 30 seconds. For context, salmon thrive at 8–14°C. This is, in effect, a torture chamber for fish.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>Research shows this triggers <strong>intense pain and stress reactions</strong>. Salmon exhibit panic behaviour with violent movements and sometimes collide with surrounding equipment. Some lose consciousness from the heat.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>Physical injuries such as wounds, fin erosion, and eye damage are common. The Norwegian Food Safety Authority reports <strong>high mortality rates</strong> during and after thermal delousing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 8: FIVE STEPS FORWARD                 -->
+  <!-- ============================================ -->
+  <section class="solutions-section" id="section-solutions">
+    <div class="solutions-intro">
+      <h2>Five Steps Forward</h2>
+      <p>The question is no longer <em>whether</em> there is an animal welfare crisis in Norwegian aquaculture — but how to address it. Here are five proposed measures.</p>
+    </div>
+
+    <div class="solutions-grid">
+      <div class="solution-card" data-solution="1">
+        <div class="solution-number">01</div>
+        <h3>Ban cleaner fish and thermal delousing</h3>
+        <p>Both methods inflict severe suffering on fish. Invest instead in humane alternatives: closed-containment pens, improved feed, genetic breeding for lice resistance, and laser technology.</p>
+      </div>
+
+      <div class="solution-card" data-solution="2">
+        <div class="solution-number">02</div>
+        <h3>Halt production if mortality is too high</h3>
+        <p>Expand Norway's existing "traffic-light system" to include farmed salmon welfare. If mortality rates exceed sustainable levels, authorities should have the power to scale back production.</p>
+      </div>
+
+      <div class="solution-card" data-solution="3">
+        <div class="solution-number">03</div>
+        <h3>Introduce a tax on suffering</h3>
+        <p>Reform the tax system so producers with poor animal welfare standards are penalised, while those who treat animals well are rewarded. The system can be designed revenue-neutral.</p>
+      </div>
+
+      <div class="solution-card" data-solution="4">
+        <div class="solution-number">04</div>
+        <h3>Strengthen the regulatory authority</h3>
+        <p>The Norwegian Food Safety Authority lacks sufficient resources. It must be bolstered, and fines for breaches of the Animal Welfare Act must be substantially increased.</p>
+      </div>
+
+      <div class="solution-card" data-solution="5">
+        <div class="solution-number">05</div>
+        <h3>Require less intensive smolt production</h3>
+        <p>Reduce hatchery growth rates and replicate natural lighting and temperature patterns. A more robust smolt enhances welfare across its entire lifespan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 9: FOOTER / CALL TO ACTION            -->
+  <!-- ============================================ -->
+  <footer class="site-footer" id="section-footer">
+    <div class="footer-content">
+      <div class="footer-cta">
+        <h2>This crisis demands action</h2>
+        <p>Norway controls over half of the world's farmed salmon production. We have a special responsibility — and the power to lead change.</p>
+        <a href="#" class="cta-button" target="_blank" rel="noopener">Read the full Langsikt report</a>
+      </div>
+      <div class="footer-attribution">
+        <p>Based on <em>"Beneath the Surface: The Animal Welfare Crisis in Norwegian Fish Farming"</em> by Albert Didriksen &amp; Aksel Sterri. Published January 2025 by <strong>Langsikt</strong>, a politically independent think tank.</p>
+        <p class="footer-note">All data sourced from the Norwegian Veterinary Institute, the Norwegian Directorate of Fisheries, and the Office of the Auditor General of Norway.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Libraries (loaded from CDN) -->
+  <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.min.js"></script>
+
+  <!-- Theme toggle script -->
+  <script>
+    (function() {
+      var btn = document.getElementById('themeToggle');
+      var icon = document.getElementById('themeIcon');
+      function updateIcon() {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        icon.innerHTML = isDark ? '&#9728;' : '&#9790;';
+      }
+      updateIcon();
+      btn.addEventListener('click', function() {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+        updateIcon();
+      });
+    })();
+  </script>
+
+  <!-- Our scripts -->
+  <script src="js/counter.js"></script>
+  <script src="js/icon-grid.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

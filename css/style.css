@@ -1,0 +1,902 @@
+/* ============================================
+   BENEATH THE SURFACE — Main Stylesheet
+   ============================================ */
+
+/* --- CSS Custom Properties (Colors & Spacing) --- */
+:root {
+  /* Colors */
+  --color-bg: #fafafa;
+  --color-text: #1a1a2e;
+  --color-text-light: #555;
+  --color-text-muted: #888;
+  --color-accent: #0f4c75;
+  --color-hero-bg: #0d1b2a;
+  --color-hero-text: #e0e0e0;
+
+  /* Data visualization colors */
+  --color-salmon: #e8614d;
+  --color-poultry: #f0c040;
+  --color-pig: #e8a0b0;
+  --color-ruminant: #b0b0b0;
+  --color-trout: #f28c5a;
+  --color-turkey: #a0c878;
+  --color-cattle: #8faabe;
+  --color-danger: #d32f2f;
+  --color-safe: #c8c8c8;
+
+  /* Spacing */
+  --section-padding: 4rem 2rem;
+  --max-width: 1200px;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+}
+
+/* --- Dark Mode --- */
+[data-theme="dark"] {
+  --color-bg: #121820;
+  --color-text: #d8dee6;
+  --color-text-light: #9aa5b4;
+  --color-text-muted: #6b7a8d;
+  --color-accent: #5ba3d9;
+  --color-hero-bg: #080e16;
+  --color-hero-text: #d0d6de;
+  --color-safe: #3a4250;
+}
+
+[data-theme="dark"] .scroll-graphic {
+  background: #161e28;
+}
+
+[data-theme="dark"] .scroll-section {
+  border-bottom-color: #1e2a38;
+}
+
+[data-theme="dark"] .bar-track {
+  background: #1e2a38;
+}
+
+[data-theme="dark"] .stage-item {
+  background: #1a2230;
+}
+
+[data-theme="dark"] .solutions-section {
+  background: #080e16;
+}
+
+[data-theme="dark"] .site-footer {
+  background: #060c14;
+}
+
+[data-theme="dark"] .solution-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* --- Dark Mode Toggle Button --- */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: scale(1.08);
+}
+
+[data-theme="dark"] .theme-toggle {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Scroll sections that aren't hero/solutions/footer need text color from vars */
+[data-theme="dark"] strong {
+  color: var(--color-text);
+}
+
+[data-theme="dark"] h2 {
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .scroll-graphic {
+  border-bottom-color: #1e2a38;
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+strong {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* --- Scroll Progress Bar --- */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--color-salmon);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* ============================================
+   SECTION 0: HERO
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-hero-bg);
+  color: var(--color-hero-text);
+  overflow: hidden;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 2;
+  padding: 2rem;
+  max-width: 800px;
+}
+
+.hero-overline {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.hero-subtitle {
+  font-size: 1.35rem;
+  font-weight: 300;
+  color: #b0bec5;
+  margin-bottom: 2rem;
+}
+
+.hero-byline {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-bottom: 4rem;
+}
+
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  letter-spacing: 1px;
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
+}
+
+.hero-bg-fish {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  /* Will be populated with SVG salmon silhouettes via JS or CSS background */
+}
+
+/* ============================================
+   SCROLLYTELLING SECTIONS (Sticky + Steps)
+   ============================================ */
+.scroll-section {
+  position: relative;
+  display: flex;
+  background: var(--color-bg);
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.scroll-graphic {
+  position: sticky;
+  top: 0;
+  width: 55%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.graphic-content {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.graphic-title {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.scroll-text {
+  width: 45%;
+  padding: 0 3rem;
+}
+
+.step {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
+  opacity: 0.25;
+  transition: opacity 0.4s ease;
+}
+
+.step.is-active {
+  opacity: 1;
+}
+
+/* The last step in each section gets extra bottom padding
+   so the user has room to scroll past */
+.step:last-child {
+  margin-bottom: 30vh;
+}
+
+/* First step in each section gets top margin to push content down */
+.step:first-child {
+  margin-top: 40vh;
+}
+
+/* ============================================
+   SECTION 1: COUNTER & DONUT
+   ============================================ */
+.counter-display {
+  margin-bottom: 3rem;
+}
+
+.counter-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--color-salmon);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.counter-label {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+}
+
+.donut-container {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.donut-container.visible {
+  opacity: 1;
+}
+
+/* ============================================
+   SECTION 2: ICON GRID (CENTREPIECE)
+   ============================================ */
+#icon-grid-container {
+  width: 95%;
+  max-width: 700px;
+}
+
+.grid-title {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.grid-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  min-height: 1.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 1px;
+  display: inline-block;
+}
+
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+}
+
+.icon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.icon-dot.visible {
+  opacity: 1;
+}
+
+.icon-dot.salmon {
+  background-color: var(--color-salmon);
+}
+
+.icon-dot.poultry {
+  background-color: var(--color-poultry);
+}
+
+.icon-dot.pig {
+  background-color: var(--color-pig);
+}
+
+.icon-dot.ruminant {
+  background-color: var(--color-ruminant);
+}
+
+.grid-scale {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ============================================
+   SECTION 3: BAR CHART (MORTALITY RATES)
+   ============================================ */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bar-label {
+  width: 120px;
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 36px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+  transition: width 1s ease-out;
+  display: flex;
+  align-items: center;
+  padding-left: 0.75rem;
+}
+
+.bar-fill.active {
+  /* width set by JS */
+}
+
+.bar-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ============================================
+   SECTION 4: STAGE FLOW
+   ============================================ */
+.stage-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.stage-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #f8f8f8;
+  border-radius: 8px;
+  border-left: 4px solid var(--color-safe);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.5s ease;
+}
+
+.stage-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stage-item.active {
+  border-left-color: var(--color-salmon);
+}
+
+.stage-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.stage-info h4 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.stage-info .stage-number {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--color-salmon);
+}
+
+/* ============================================
+   SECTION 5: DOT MAP
+   ============================================ */
+.dot-map {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
+  padding: 1rem 0;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.site-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-safe);
+  transition: background-color 0.4s ease;
+}
+
+.site-dot.affected {
+  background: var(--color-danger);
+}
+
+.dot-legend {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+}
+
+.dot-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-normal {
+  background: var(--color-safe);
+}
+
+.dot-affected {
+  background: var(--color-danger);
+}
+
+/* ============================================
+   SECTION 6: CLEANER FISH
+   ============================================ */
+.cleaner-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.cleaner-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--color-accent);
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.4s ease;
+}
+
+.cleaner-dot.visible {
+  opacity: 1;
+}
+
+.cleaner-dot.dead {
+  background: var(--color-danger);
+  opacity: 0.5;
+}
+
+.cleaner-stats {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  min-height: 2rem;
+}
+
+/* ============================================
+   SECTION 7: THERMOMETER
+   ============================================ */
+.thermometer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.thermo-svg {
+  width: 120px;
+}
+
+.thermo-reading {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--color-danger);
+  margin-top: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.thermo-reading.visible {
+  opacity: 1;
+}
+
+.thermo-label {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin-top: 0.5rem;
+}
+
+.thermo-context {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* ============================================
+   SECTION 8: SOLUTIONS
+   ============================================ */
+.solutions-section {
+  background: var(--color-hero-bg);
+  color: var(--color-hero-text);
+  padding: 6rem 2rem;
+}
+
+.solutions-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+}
+
+.solutions-intro h2 {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.solutions-intro p {
+  color: #b0bec5;
+  font-size: 1.15rem;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.solution-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.solution-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.solution-number {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-salmon);
+  margin-bottom: 0.75rem;
+}
+
+.solution-card h3 {
+  color: #fff;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.solution-card p {
+  color: #90a4ae;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ============================================
+   SECTION 9: FOOTER
+   ============================================ */
+.site-footer {
+  background: #0a1520;
+  color: #b0bec5;
+  padding: 5rem 2rem;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-cta {
+  margin-bottom: 3rem;
+}
+
+.footer-cta h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.footer-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--color-salmon);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+  background: #d44f3c;
+  transform: translateY(-2px);
+}
+
+.footer-attribution {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.footer-note {
+  font-size: 0.8rem;
+  color: #607d8b;
+  margin-top: 1rem;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet and below */
+@media (max-width: 1024px) {
+  .scroll-graphic {
+    width: 50%;
+  }
+  .scroll-text {
+    width: 50%;
+    padding: 0 2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  /* Stack graphic above text on mobile */
+  .scroll-section {
+    flex-direction: column;
+  }
+
+  .scroll-graphic {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 45vh;
+    z-index: 5;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .scroll-text {
+    width: 100%;
+    padding: 0 1.5rem;
+  }
+
+  .step {
+    min-height: 60vh;
+  }
+
+  .step:first-child {
+    margin-top: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  .counter-number {
+    font-size: 2.5rem;
+  }
+
+  .icon-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .icon-grid {
+    gap: 1px;
+  }
+
+  .solutions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .solutions-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .bar-label {
+    width: 80px;
+    font-size: 0.8rem;
+  }
+}

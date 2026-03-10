@@ -1,0 +1,32 @@
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* Fade in from below */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Hero content entrance */
+.hero-content {
+  animation: fadeInUp 1.2s ease-out 0.3s both;
+}
+
+/* Pulsing glow for key numbers */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
